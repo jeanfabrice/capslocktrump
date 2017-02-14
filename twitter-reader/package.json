@@ -1,0 +1,16 @@
+{
+  "name": "twitter-reader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "debug": "^2.6.0",
+    "underscore": "^1.8.3",
+    "request": "^2.79.0",
+    "twitter": "^1.7.0",
+    "oauth": "^0.9.15"
+  },
+  "private": true,
+  "author": "jean-fabrice <jeanfabrice@gmail.com>",
+  "license": "MIT"
+}

@@ -1,0 +1,10 @@
+{
+  "rabbitmq": {
+    "url":      "amqp://rabbitmq",
+    "exchange": "capslocktrump",
+    "routein":  "filtered"
+  },
+  "filter": [{
+    "in": "\\s+", "out": "\n"
+  }]
+}

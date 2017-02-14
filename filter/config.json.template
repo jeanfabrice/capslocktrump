@@ -1,0 +1,17 @@
+{
+  "rabbitmq": {
+    "url":      "amqp://rabbitmq",
+    "exchange": "XXXXXXXXXXXX",
+    "routein":  "filter",
+    "routeout": "filtered"
+  },
+  "filter" : [
+    { "in": "^CIA|ABC|CNN|NBC|FBI|CEO$", "out": "" },
+    { "in": "^[A-Z][.][A-Z][.][!?]?$", "out": "" },
+    { "in": "^(.)\\1+$", "out": "" },
+    { "in": "^[/@].*", "out": "" },
+    { "in": "([A-Z][A-Z])[.]$", "out": "$1" },
+    { "in": "^[A-Z][.][A-Z][.]\\s+(.*)", "out": "$1" }
+  ],
+  "therealdonaldtrumpshoutingregexp": "([#@/]?\\b[A-Z][A-Z &.-]+[A-Z]\\b[!?.]*)"
+}

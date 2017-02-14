@@ -1,0 +1,9 @@
+{
+  "rabbitmq": {
+    "url":      "amqp://rabbitmq",
+    "exchange": "capslocktrump",
+    "routeout": "filter"
+  },
+  "follow": "25073877",
+  "history_since_id": 822421390125043713
+}

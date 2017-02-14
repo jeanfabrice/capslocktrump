@@ -1,0 +1,9 @@
+{
+  "googleSheetId": "XXXXXXXXXX",
+  "rabbitmq": {
+    "exchange": "capslocktrump",
+    "routein":  "filtered",
+    "url":      "amqp://rabbitmq"
+  },
+  "filter": []
+}

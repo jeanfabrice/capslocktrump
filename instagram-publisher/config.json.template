@@ -1,0 +1,15 @@
+{
+  "rabbitmq": {
+    "url":      "amqp://rabbitmq",
+    "exchange": "capslocktrump",
+    "routein":  "filtered"
+  },
+  "gm": {
+    "fontSize": "100",
+    "textColor": "#cd1719",
+    "interline": "-50"
+  },
+  "filter": [{
+    "in": "\\s+", "out": "\n"
+  }]
+}

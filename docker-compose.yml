@@ -1,0 +1,111 @@
+version: '2'
+services:
+  rabbitmq:
+    restart: always
+    hostname: rabbitmq
+    image: "rabbitmq:3-management"
+    ports:
+      - "15672:15672"
+
+  filter:
+    restart: always
+    build:
+      context: .
+      dockerfile: filter/Dockerfile
+      args:
+        - path=filter
+    hostname: filter
+    environment:
+      DEBUG: 'filter'
+    links:
+      - rabbitmq:rabbitmq
+    volumes:
+      - ./filter/config.json:/usr/src/app/config.json:ro
+    depends_on:
+      - rabbitmq
+
+  file-reader:
+    build:
+      context: .
+      dockerfile: file-reader/Dockerfile
+      args:
+        - path=file-reader
+    volumes:
+      - ./file-reader/sampletweets.json:/usr/src/app/sampletweets.json:ro
+    depends_on:
+      - rabbitmq
+
+  twitter-reader:
+    restart: always
+    build:
+      context: .
+      dockerfile: twitter-reader/Dockerfile
+      args:
+        - path=twitter-reader
+    environment:
+      DEBUG: '*'
+    links:
+      - rabbitmq:rabbitmq
+    volumes:
+      - ./twitter-reader/client_secret.json:/usr/src/app/client_secret.json:ro
+      - ./twitter-reader/user_secret.json:/usr/src/app/user_secret.json:ro
+      - ./twitter-reader/config.json:/usr/src/app/config.json:ro
+    depends_on:
+      - rabbitmq
+
+  instagram-publisher:
+    hostname: instapublisher
+    restart: always
+    build:
+      context: .
+      dockerfile: instagram-publisher/Dockerfile
+      args:
+        - path=instagram-publisher
+    environment:
+      DEBUG: 'instagram-publisher'
+    links:
+      - rabbitmq:rabbitmq
+    volumes:
+      - ./instagram-publisher/font.otf:/usr/src/app/font.otf:ro
+      - ./instagram-publisher/config.json:/usr/src/app/config.json:ro
+      - ./instagram-publisher/credentials.json:/usr/src/app/credentials.json:ro
+    depends_on:
+      - rabbitmq
+
+  twitter-publisher:
+    restart: always
+    build:
+      context: .
+      dockerfile: twitter-publisher/Dockerfile
+      args:
+        - path=twitter-publisher
+    hostname: twitterpublisher
+    environment:
+      DEBUG: 'twitter-publisher'
+    links:
+      - rabbitmq:rabbitmq
+    volumes:
+      - ./twitter-publisher/user_secret.json:/usr/src/app/user_secret.json:ro
+      - ./twitter-publisher/client_secret.json:/usr/src/app/client_secret.json:ro
+      - ./twitter-publisher/config.json:/usr/src/app/config.json:ro
+    depends_on:
+      - rabbitmq
+
+  google-publisher:
+    restart: always
+    build:
+      context: .
+      dockerfile: google-publisher/Dockerfile
+      args:
+        - path=google-publisher
+    hostname: googlepublisher
+    environment:
+      DEBUG: 'google-publisher'
+    links:
+      - rabbitmq:rabbitmq
+    volumes:
+      - ./google-publisher/client_secret.json:/usr/src/app/client_secret.json:ro
+      - ./google-publisher/config.json:/usr/src/app/config.json:ro
+      - ./google-publisher/user_secret.json:/usr/src/app/user_secret.json:ro
+    depends_on:
+      - rabbitmq

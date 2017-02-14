@@ -1,0 +1,7 @@
+{
+  "rabbitmq": {
+    "url":      "amqp://rabbitmq",
+    "exchange": "XXXXXXXXXX",
+    "routeout": "filter"
+  }
+}

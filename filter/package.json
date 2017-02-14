@@ -1,0 +1,14 @@
+{
+  "name": "filter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "debug": "^2.6.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "private": true,
+  "author": "jean-fabrice <jeanfabrice@gmail.com>",
+  "license": "MIT"
+}
