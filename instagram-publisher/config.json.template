@@ -11,5 +11,6 @@
   },
   "filter": [{
     "in": "\\s+", "out": "\n"
-  }]
+  }],
+  "allinone": true
 }

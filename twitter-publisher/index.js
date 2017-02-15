@@ -129,7 +129,7 @@ function filter( arrayOfCaps ) {
   })
   debug( 'filter stage #2:', arrayOfCaps );
 
-  return arrayOfCaps;
+  return config.allinone ? arrayOfCaps.join( "\n" ) : arrayOfCaps;
 }
 
 function start( amqpConn, twitterTokens ) {
@@ -147,8 +147,10 @@ function start( amqpConn, twitterTokens ) {
       ch.bindQueue( q.queue, config.rabbitmq.exchange, config.rabbitmq.routein );
       ch.consume( q.queue, function( msg ) {
         var tweet = JSON.parse( msg.content.toString() );
+
         console.log( 'Got data : ', tweet.text );
         debug( 'Received a few data to tweet: ', tweet );
+        
         var filtered = filter( tweet.filtered );
 
         _.each( filtered, function( f ) {

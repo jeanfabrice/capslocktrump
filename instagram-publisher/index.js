@@ -57,7 +57,7 @@ function filter( arrayOfCaps ) {
   })
   debug( 'filter stage #2:', arrayOfCaps );
 
-  return arrayOfCaps;
+  return config.allinone ? arrayOfCaps.join( "\n" ) : arrayOfCaps;
 }
 
 function start( amqpConn ) {
@@ -70,13 +70,14 @@ function start( amqpConn ) {
 
       ch.bindQueue( q.queue, config.rabbitmq.exchange, config.rabbitmq.routein );
       ch.consume( q.queue, function( msg ) {
-        var tweet   = JSON.parse( msg.content.toString() );
-        var date    = dateformat( new Date( tweet.created_at ), 'mmmm. d. yyyy' ).toUpperCase();
-        var caption = date + ".\n" + '"' + tweet.text + '"';
-        var filtered = filter( tweet.filtered );
+        var tweet    = JSON.parse( msg.content.toString() );
 
         console.log( 'Got data : ', tweet.text );
         debug( 'Received a few data to instagram: ', tweet );
+
+        var date     = dateformat( new Date( tweet.created_at ), 'mmmm. d. yyyy' ).toUpperCase();
+        var caption  = date + ".\n" + '"' + tweet.text + '"';
+        var filtered = filter( tweet.filtered );
 
         _.each( filtered, function( f, i ) {
           gm( './template.jpg' )
