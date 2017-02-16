@@ -129,7 +129,7 @@ function filter( arrayOfCaps ) {
   })
   debug( 'filter stage #2:', arrayOfCaps );
 
-  return config.allinone ? arrayOfCaps.join( "\n" ) : arrayOfCaps;
+  return config.allinone ? [ arrayOfCaps.join( "\n" ) ] : arrayOfCaps;
 }
 
 function start( amqpConn, twitterTokens ) {
@@ -150,7 +150,7 @@ function start( amqpConn, twitterTokens ) {
 
         console.log( 'Got data : ', tweet.text );
         debug( 'Received a few data to tweet: ', tweet );
-        
+
         var filtered = filter( tweet.filtered );
 
         _.each( filtered, function( f ) {

@@ -57,7 +57,7 @@ function filter( arrayOfCaps ) {
   })
   debug( 'filter stage #2:', arrayOfCaps );
 
-  return config.allinone ? arrayOfCaps.join( "\n" ) : arrayOfCaps;
+  return config.allinone ? [ arrayOfCaps.join( "\n" ) ] : arrayOfCaps;
 }
 
 function start( amqpConn ) {
