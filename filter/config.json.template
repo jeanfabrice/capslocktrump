@@ -6,14 +6,14 @@
     "routeout": "filtered"
   },
   "filter" : [
-    { "in": "^CIA|NFL|ABC|DJT|DTS|CNN|NBC|FBI|CEO|CBS|GOP|NYC|DNC|RNC|USA|NAFTA$", "out": "" },
     { "in": "^F[.]B[.]I[.]|N[.]Y[.]C[.]|U[.]S[.]A[.]$", "out": "" },
     { "in": "([!?.])\\s+[A-Z]$", "out": "$1" },
     { "in": "([A-Z][A-Z])[.]$", "out": "$1" },
     { "in": "^(.)\\1+$", "out": "" },
     { "in": "^[#@/].*", "out": "" },
     { "in": "^[A-Z][.][A-Z][.][!?]?$", "out": "" },
-    { "in": "^[A-Z][.][A-Z][.]\\s+(.*)", "out": "$1" }
+    { "in": "^[A-Z][.][A-Z][.]\\s+(.*)", "out": "$1" },
+    { "in": "^(MSM|CIA|NFL|ABC|DJT|DTS|CNN|NBC|FBI|CEO|CBS|GOP|NYC|DNC|RNC|USA|NAFTA)$", "out": "" }
   ],
   "therealdonaldtrumpshoutingregexp": "([#@/]?\\b[A-Z][A-Z0-9 &.,;-]+[A-Z]\\b[!?.]*)"
 }
