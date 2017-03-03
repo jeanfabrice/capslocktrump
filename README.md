@@ -100,7 +100,7 @@ Un fichier [docker-compose.yml](docker-compose.yml) est fourni à titre d'exempl
 * la feuille Google Sheets [The Capslocktrump Google Sheet](https://docs.google.com/spreadsheets/d/1zXpFsdAZ1xPEMCaiVQxFoX_Ec1yPvkoKs6kpt-qm-6I/edit?usp=sharing)
 
 # Crédits
-Idée originale de [**@ff_ff**](https://twitter.coml/ff_ff)
+Idée originale de [**@ff_ff**](https://twitter.com/ff_ff)
 
 Crée et maintenu par [**@jean_fabrice**](https://twitter.com/jean_fabrice)
 
