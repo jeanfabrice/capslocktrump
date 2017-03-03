@@ -3,9 +3,9 @@
 
 Les canaux de publication supportés sont : 
 
-* [Google Sheet](tree/master/google-publisher)
-* [Twitter](tree/master/twitter-publisher)
-* [Instagram](tree/master/instagram-publisher)
+* [Google Sheet](google-publisher)
+* [Twitter](twitter-publisher)
+* [Instagram](instagram-publisher)
 
 # Principe de fonctionnement
 ```
@@ -40,9 +40,9 @@ Les canaux de publication supportés sont :
                    +---------------------+   +--------------------+   +-----------------------+
 ```
 
-1. Les tweets sont capturés par un container [twitter-reader](tree/master/twitter-reader) et/ou [file-reader](tree/master/file-reader)
+1. Les tweets sont capturés par un container [twitter-reader](twitter-reader) et/ou [file-reader](file-reader)
 2. Les tweets capturés sont publiés intégralement auprès d'un container RabbitMQ, avec une clé de routage spécifique
-3. Un container [filter](tree/master/filter) récupère les tweets de RabbitMQ à l'aide de la clé de routage connue, en extrait les séquences en CAPSLOCK, applique une série de filtres visant à améliorer la qualité des séquences extraites (suppression des acronymes, des abréviations usuelles, etc.) puis republie auprès du container RabbitMQ les séquences retenues, avec une nouvelle clé de routage.
+3. Un container [filter](filter) récupère les tweets de RabbitMQ à l'aide de la clé de routage connue, en extrait les séquences en CAPSLOCK, applique une série de filtres visant à améliorer la qualité des séquences extraites (suppression des acronymes, des abréviations usuelles, etc.) puis republie auprès du container RabbitMQ les séquences retenues, avec une nouvelle clé de routage.
 4. Les containers google-publisher, twitter-publisher et instagram-publisher publient finalement, sur leur média respectif, les séquences en CAPSLOCK récupérées sur RabbitMQ
 
 
@@ -52,45 +52,45 @@ Les containers crées à partir des images Docker fournies nécéssitent certain
 
 Dans la majorité des cas, il s'agit d'un ou plusieurs fichiers au format json. Un exemple de ces fichiers est fourni systématiquement, avec une extention '.template'.
 
-## Container [file-reader](tree/master/file-reader)
+## Container [file-reader](file-reader)
 Fichier de configuration attendu :
 
-* [`config.json`](blob/master/file-reader/config.json.template)
+* [`config.json`](file-reader/config.json.template)
 
-## Container [twitter-reader](tree/master/twitter-reader)
+## Container [twitter-reader](twitter-reader)
 Fichiers de configuration attendus :
 
-* [`config.json`](blob/master/twitter-reader/config.json.template)
-* [`client_secret.json`](blob/master/twitter-reader/client_secret.json.template)
-* [`user_secret.json`](blob/master/twitter-reader/user_secret.json.template)
+* [`config.json`](twitter-reader/config.json.template)
+* [`client_secret.json`](twitter-reader/client_secret.json.template)
+* [`user_secret.json`](twitter-reader/user_secret.json.template)
 
-## Container [filter](tree/master/filter)
+## Container [filter](filter)
 Fichier de configuration attendu :
 
-* [`config.json`](blob/master/twitter-reader/config.json.template)
+* [`config.json`](twitter-reader/config.json.template)
 
-## Container [google-publisher](tree/master/google-publisher)
+## Container [google-publisher](google-publisher)
 Fichiers de configuration attendus :
 
-* [`config.json`](blob/master/google-publisher/config.json.template)
-* [`client_secret.json`](blob/master/google-publisher/client_secret.json.template)
-* [`user_secret.json`](blob/master/google-publisher/user_secret.json.template)
+* [`config.json`](google-publisher/config.json.template)
+* [`client_secret.json`](google-publisher/client_secret.json.template)
+* [`user_secret.json`](google-publisher/user_secret.json.template)
 
-## Container [twitter-publisher](tree/master/twitter-publisher)
+## Container [twitter-publisher](twitter-publisher)
 Fichiers de configuration attendus :
 
-* [`config.json`](blob/master/twitter-publisher/config.json.template)
-* [`client_secret.json`](blob/master/twitter-publisher/client_secret.json.template)
-* [`user_secret.json`](blob/master/twitter-publisher/user_secret.json.template)
+* [`config.json`](twitter-publisher/config.json.template)
+* [`client_secret.json`](twitter-publisher/client_secret.json.template)
+* [`user_secret.json`](twitter-publisher/user_secret.json.template)
 
-## Container [instagram-publisher](tree/master/instagram-publisher)
+## Container [instagram-publisher](instagram-publisher)
 Fichiers de configuration attendus :
 
-* [`config.json`](blob/master/instagram-publisher/config.json.template)
-* [`credentials.json`](blob/master/instagram-publisher/credentials.json.template)
+* [`config.json`](instagram-publisher/config.json.template)
+* [`credentials.json`](instagram-publisher/credentials.json.template)
 
 # docker-compose
-Un fichier [docker-compose.yml](blob/master/docker-compose.yml) est fourni à titre d'exemple.
+Un fichier [docker-compose.yml](docker-compose.yml) est fourni à titre d'exemple.
 
 # Démonstration
 `capslocktrump` est utilisée pour alimenter de manière automatique :
