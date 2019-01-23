@@ -1,4 +1,4 @@
-FROM node:7
+FROM node:7-slim
 RUN apt-get update && apt-get install -y graphicsmagick
 ARG path=.
 WORKDIR /usr/src/app
